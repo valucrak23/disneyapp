@@ -69,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (this.title === 'WhatsApp') {
                 shareUrl = `https://wa.me/?text=${encodeURIComponent('¡Mirá esta app de Disney! ' + url)}`;
             } else if (this.title === 'Instagram') {
-                // Instagram no permite compartir enlaces directamente, así que solo copia el link
                 alert('Enlace copiado. Pega el link en tu historia o mensaje de Instagram.');
                 return;
             }

@@ -70,10 +70,14 @@ self.addEventListener('push', (event)=>{
                 'icon': 'icons/android-icon-192x192.png'
             }
         ] 
-
     }
 
-    event.waitUntil(self.registration.showNotification(title, options));
+    event.waitUntil(
+        self.registration.showNotification(title, options)
+            .catch(err => {
+                console.error('Error mostrando la notificación:', err);
+            })
+    );
 });
 //
 self.addEventListener('notificationclick', (event) => {
@@ -87,4 +91,12 @@ self.addEventListener('notificationclick', (event) => {
             clients.openWindow('/memory-game.html')
         );
     }
+});
+self.addEventListener('message', (event) => {
+  if (event.data === 'test-notification') {
+    self.registration.showNotification('Test', {
+      body: 'Esto es una prueba directa desde el SW',
+      icon: 'icons/android-icon-192x192.png'
+    });
+  }
 });
