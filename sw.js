@@ -10,7 +10,7 @@ const urlsToCache = [
     '/assets/img/titulo.png',
     '/manifest.json'
 ];
-
+//hola
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
