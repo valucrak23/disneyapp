@@ -92,7 +92,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Manejo del botón de prueba de notificaciones
-
+    const testNotificationBtn = document.querySelector('#test-notification');
+    if (testNotificationBtn) {
+        testNotificationBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            if ('serviceWorker' in navigator && 'PushManager' in window) {
+                try {
+                    const registration = await navigator.serviceWorker.ready;
+                    // Solicitar permisos de notificación
+                    const permission = await Notification.requestPermission();
+                    if (permission === 'granted') {
+                        // Simular un evento push para mostrar la notificación
+                        registration.showNotification('Selecciona una acción', {
+                            body: 'Probá nuestra memory game',
+                            icon: 'icons/android-icon-192x192.png',
+                            vibrate: [200, 100, 200, 200, 300, 400, 100, 400, 300],
+                            data: {id: 1},
+                            actions: [
+                                {
+                                    'action': 'SI',
+                                    'title': 'Ir a disney Plus',
+                                    'icon': 'icons/android-icon-192x192.png'
+                                },
+                                {
+                                    'action': 'NO',
+                                    'title': 'Ver memory game',
+                                    'icon': 'icons/android-icon-192x192.png'
+                                }
+                            ]
+                        });
+                        console.log('Notificación enviada correctamente');
+                    }
+                } catch (error) {
+                    console.error('Error al mostrar la notificación:', error);
+                }
+            }
+        });
+    }
 });
 
 /* status de lines */
