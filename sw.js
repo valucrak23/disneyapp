@@ -47,7 +47,7 @@ self.addEventListener('activate', event => {
         })
     );
 });
-
+//notificaciones
 self.addEventListener('push', (event)=>{
     console.log(event);
 
@@ -75,7 +75,7 @@ self.addEventListener('push', (event)=>{
 
     event.waitUntil(self.registration.showNotification(title, options));
 });
-
+//
 self.addEventListener('notificationclick', (event) => {
     console.log(event);
     if (event.action === "Ir a Disney Plus") {

@@ -103,20 +103,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     const permission = await Notification.requestPermission();
                     if (permission === 'granted') {
                         // Simular un evento push para mostrar la notificación
-                        registration.showNotification('Demo Push', {
-                            body: 'Click para regresar a la aplicación',
+                        registration.showNotification('Selecciona una acción', {
+                            body: 'Probá nuestra memory game',
                             icon: 'icons/android-icon-192x192.png',
                             vibrate: [200, 100, 200, 200, 300, 400, 100, 400, 300],
                             data: {id: 1},
                             actions: [
                                 {
                                     'action': 'SI',
-                                    'title': '¿Te gusta la app?',
+                                    'title': 'Ir a disney Plus',
                                     'icon': 'icons/android-icon-192x192.png'
                                 },
                                 {
                                     'action': 'NO',
-                                    'title': '¿Te gusta la app?',
+                                    'title': 'Ver memory game',
                                     'icon': 'icons/android-icon-192x192.png'
                                 }
                             ]
