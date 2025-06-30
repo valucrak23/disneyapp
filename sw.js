@@ -80,11 +80,11 @@ self.addEventListener('notificationclick', (event) => {
     console.log(event);
     if (event.action === "SI") {
         console.log("Le gustó la app");
-        clients.openWindow('https://github.com/houruck/mikrotik-imperial-march/blob/master/starwars.txt');
+        clients.openWindow('/index.html');
         console.log(clients);
     } else if (event.action === "NO") {
-        console.log("Chau");
-        clients.openWindow('https://script.google.com/u/0/home/projects/1tf-EbQhVlITCUbjlteldkA2jvKzvgkdcdsGrIiGlfm29TGS07LYUMtjg/edit');
+        console.log("No le gustó la app");
+        clients.openWindow('https://forms.gle/example-feedback-form');
         console.log(clients);
     }
 });
