@@ -57,7 +57,7 @@ self.addEventListener('push', (event)=>{
         body: "Elegir una acción",
         icon: "icons/android-icon-192x192.png",
         vibrate: [200, 100, 200, 200, 300, 400, 100, 400, 300],
-        dat: {id: 1},
+        data: {id: 1},
         actions:[
             {
                 'action': 'SI',
