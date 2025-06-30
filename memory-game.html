@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disney Memory Game - Cruz Agostina, Cubillo Alfredo, Ijelchuk Valentina</title>
+    <link href="https://cdn.jsdelivr.net/gh/ixahmedxi/waltograph-fonts@latest/waltographUI/stylesheet.css"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <meta name="theme-color" content="#d900ff">
+</head>
+
+<body>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    
+    <div class="container-fluid p-0">
+        <div class="row m-0">
+            <div class="col-12 p-0">
+                <header class="d-flex align-items-center">
+                    <h1 id="logo">
+                        <img src="assets/img/titulo.png" alt="Disney Characters" class="logo-title" />
+                    </h1>
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="memory-game.html">Memory Game</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="open-favorites">Favoritos</a>
+                        </li>
+                        <li class="nav-item">
+                            <button id="share" class="btn btn-primary nav-link" style="color:white;">Compartir</button>
+                        </li>
+                        <li id="perrito">
+                            <div id="status-app" class="online nav-item"></div>
+                        </li>
+                    </ul>
+                </header>
+            </div>
+        </div>
+    </div>
+
+    <section class="container-fluid hero-home">
+        <div class="row">
+            <div class="col-12 inner-container d-flex flex-column justify-content-center align-items-center">
+                <h1 class="text-white">
+                    <span class="disney-title">🎮 Memory Game Disney 🎮</span>
+                </h1>
+                <p class="text-white fs-5 mb-4">¡Encuentra las parejas de personajes de Disney!</p>
+                <div class="game-controls">
+                    <button id="start-game" class="btn btn-primary btn-lg me-3">Iniciar Juego</button>
+                    <button id="reset-game" class="btn btn-secondary btn-lg">Reiniciar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="game-stats text-center mb-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="stat-card">
+                                <h3 id="moves">0</h3>
+                                <p>Movimientos</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-card">
+                                <h3 id="timer">00:00</h3>
+                                <p>Tiempo</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-card">
+                                <h3 id="score">0</h3>
+                                <p>Puntuación</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div id="game-board" class="memory-game-board">
+                    <!-- Las tarjetas se generarán dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <p class="text-center">Disney Memory Game</p>
+                <p class="text-center small mb-0">Cruz Agostina, Cubillo Alfredo, Ijelchuk Valentina - DWM3AP -
+                    Aplicaciones Web Progresivas- 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de victoria -->
+    <div class="modal fade" id="victoryModal" tabindex="-1" aria-labelledby="victoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="victoryModalLabel">¡Felicitaciones! 🎉</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="victory-animation mb-3">
+                        <span class="victory-star">⭐</span>
+                        <span class="victory-star">⭐</span>
+                        <span class="victory-star">⭐</span>
+                    </div>
+                    <h4>¡Completaste el juego!</h4>
+                    <p>Movimientos: <span id="final-moves">0</span></p>
+                    <p>Tiempo: <span id="final-time">00:00</span></p>
+                    <p>Puntuación: <span id="final-score">0</span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="resetGame()">Jugar de nuevo</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="install-app">
+        <p class="messages">Instalar</p>
+    </div>
+
+    <!-- Modal de compartir redes sociales -->
+    <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="shareModalLabel">Compartir en redes sociales</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="d-flex justify-content-center gap-4 mb-3">
+                        <a href="https://facebook.com" target="_blank" rel="noopener" title="Facebook">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook" width="48" height="48" style="filter: invert(32%) sepia(98%) saturate(7492%) hue-rotate(203deg) brightness(99%) contrast(101%);">
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener" title="Twitter">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/twitter.svg" alt="Twitter" width="48" height="48" style="filter: invert(41%) sepia(99%) saturate(7492%) hue-rotate(175deg) brightness(99%) contrast(101%);">
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener" title="Instagram">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" alt="Instagram" width="48" height="48" style="filter: invert(41%) sepia(99%) saturate(7492%) hue-rotate(295deg) brightness(99%) contrast(101%);">
+                        </a>
+                        <a href="https://web.whatsapp.com" target="_blank" rel="noopener" title="WhatsApp">
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/whatsapp.svg" alt="WhatsApp" width="48" height="48" style="filter: invert(41%) sepia(99%) saturate(7492%) hue-rotate(95deg) brightness(99%) contrast(101%);">
+                        </a>
+                    </div>
+                    <p class="mb-0">Haz clic en el icono para ir al home de la red social.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+    <script src="js/memory-game.js"></script>
+    <script src="sw.js"></script>
+</body>
+
+</html> 

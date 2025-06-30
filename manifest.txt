@@ -1,0 +1,4 @@
+Tipos de display en el manifest json
+  /* fullscreen, standalone, minimal ui, browser */
+
+/* natural, portrait, portrait-primary (solo vertical), portrait-secondarym (rota la pantalla, quedando los botones del dispositivo arriba), landscape, landscape-primary(horzonal por defecto, la pantalla rota hacia la izquierda), landscape-secondary (Horinzontal, rota la panalla hacia la derecha) */

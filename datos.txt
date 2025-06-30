@@ -1,0 +1,12 @@
+ Escuela de Arte Multimedial Da Vinci
+? CARRERA: Diseño y Programación Web
+? MATERIA: Aplicaciones Web Progresivas
+? TRABAJO PRÁCTICO: Examen Parcial 1
+? PROFESOR: Carlos Ferrer
+? ALUMNOS:Cruz Agostina, Cubillo Alfredo, Ijelchuk Valentina
+? CUATRIMESTRE:3° cuatrimestre
+? COMISIÓN:"A"
+? TURNO:Mañana, presencial.
+? FECHA DE ENTREGA: 5/5/2025.
+
+url del sitio:https://disneyapitp1.netlify.app/
