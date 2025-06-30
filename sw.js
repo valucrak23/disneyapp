@@ -10,17 +10,18 @@ const urlsToCache = [
     '/assets/img/titulo.png',
     '/manifest.json'
 ];
-//funcion para instalacion del cache
+
+// Instalación del cache
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(cache => {
-                console.log('Cache abierto');
                 return cache.addAll(urlsToCache);
             })
     );
 });
-//para obtenerlo
+
+// Interceptar peticiones fetch
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
@@ -32,14 +33,14 @@ self.addEventListener('fetch', event => {
             })
     );
 });
-//para activarlo
+
+// Activación y limpieza de cache antiguo
 self.addEventListener('activate', event => {
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(
                 cacheNames.map(cacheName => {
                     if (cacheName !== CACHE_NAME) {
-                        console.log('Eliminando cache antiguo:', cacheName);
                         return caches.delete(cacheName);
                     }
                 })
@@ -47,12 +48,10 @@ self.addEventListener('activate', event => {
         })
     );
 });
-//notificaciones
-self.addEventListener('push', (event)=>{
-    console.log(event);
 
+// Manejo de notificaciones push
+self.addEventListener('push', (event) => {
     let title = "Selecciona una acción";
-
     let options = {
         body: "Elegir una acción",
         icon: "icons/android-icon-192x192.png",
@@ -79,9 +78,9 @@ self.addEventListener('push', (event)=>{
             })
     );
 });
-//
+
+// Manejo de clics en notificaciones
 self.addEventListener('notificationclick', (event) => {
-    console.log(event);
     if (event.action === "SI") {
         event.waitUntil(
             clients.openWindow('https://www.disneyplus.com/es-ar')
@@ -92,6 +91,8 @@ self.addEventListener('notificationclick', (event) => {
         );
     }
 });
+
+// Manejo de mensajes del cliente
 self.addEventListener('message', (event) => {
   if (event.data === 'test-notification') {
     self.registration.showNotification('Test', {

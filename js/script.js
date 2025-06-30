@@ -2,9 +2,9 @@ if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
         navigator.serviceWorker.register('sw.js')
             .then(function (registration) {
-                console.log('El registro fué exitoso, y tiene el alcance;', registration.scope);
+                console.log('Service Worker registrado exitosamente:', registration.scope);
             }).catch(function (error) {
-                console.log('El registro ha fallado: ', error);
+                console.error('Error en el registro del Service Worker:', error);
             });
     });
 }
@@ -20,16 +20,14 @@ if ('serviceWorker' in navigator) {
             statusMenu.classList.remove('offline');
             statusMenu.classList.add('online');
             statusPwa.setAttribute('content', '#d900ff');
-            console.log('Ta conectao');
-        }else{
+        } else {
             statusMenu.classList.add('offline');
             statusMenu.classList.remove('online');
             statusPwa.setAttribute('content', '#ff0000');
-            console.log('Oh no! te haz desconectao');
         }
     }
 
-    if(!navigator.onLine){
+    if (!navigator.onLine) {
         state()
     }
     window.addEventListener("online", state);
@@ -162,7 +160,6 @@ const installBtn = document.getElementById('install-app');
 if (installBtn) {
     installBtn.style.display = 'none';
     window.addEventListener('beforeinstallprompt', (e) => {
-        console.log('Evento beforeinstallprompt disparado');
         e.preventDefault();
         deferredPrompt = e;
         installBtn.style.display = 'flex';
@@ -172,9 +169,9 @@ if (installBtn) {
             deferredPrompt.prompt();
             deferredPrompt.userChoice.then((choiceResult) => {
                 if (choiceResult.outcome === 'accepted') {
-                    console.log('El usuario aceptó la instalación');
+                    console.log('PWA instalada exitosamente');
                 } else {
-                    console.log('El usuario rechazó la instalación');
+                    console.log('Instalación de PWA cancelada');
                 }
                 deferredPrompt = null;
                 installBtn.style.display = 'none';

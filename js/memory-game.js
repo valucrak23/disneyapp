@@ -300,42 +300,4 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.paddingRight = '';
         });
     }
-});
-
-// Service Worker para PWA
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registrado: ', registration);
-            })
-            .catch(registrationError => {
-                console.log('SW registro falló: ', registrationError);
-            });
-    });
-}
-
-// Detectar estado de conexión
-function updateConnectionStatus() {
-    const statusElement = document.getElementById('status-app');
-    if (statusElement) {
-        if (navigator.onLine) {
-            statusElement.className = 'online nav-item';
-            console.log('Estado: Online');
-        } else {
-            statusElement.className = 'offline nav-item';
-            console.log('Estado: Offline');
-        }
-    }
-}
-
-// Establecer estado inicial
-updateConnectionStatus();
-
-window.addEventListener('online', () => {
-    updateConnectionStatus();
-});
-
-window.addEventListener('offline', () => {
-    updateConnectionStatus();
 }); 
