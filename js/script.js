@@ -59,14 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (testNotificationBtn) {
         testNotificationBtn.addEventListener('click', async (e) => {
             e.preventDefault();
-            alert('Botón de notificación clickeado');
             if ('serviceWorker' in navigator && 'PushManager' in window) {
                 try {
                     const registration = await navigator.serviceWorker.ready;
-                    alert('Service Worker listo');
                     // Solicitar permisos de notificación
                     const permission = await Notification.requestPermission();
-                    alert('Permiso de notificación: ' + permission);
                     if (permission === 'granted') {
                         // Simular un evento push para mostrar la notificación
                         registration.showNotification('Demo Push', {
@@ -87,17 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }
                             ]
                         });
-                        alert('Notificación enviada correctamente');
                         console.log('Notificación enviada correctamente');
-                    } else {
-                        alert('Debes permitir las notificaciones para probar esta función.');
                     }
                 } catch (error) {
                     console.error('Error al mostrar la notificación:', error);
-                    alert('Error al mostrar la notificación. Verifica la consola para más detalles.');
                 }
-            } else {
-                alert('Las notificaciones push no son compatibles con este navegador.');
             }
         });
     }
