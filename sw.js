@@ -10,7 +10,7 @@ const urlsToCache = [
     '/assets/img/titulo.png',
     '/manifest.json'
 ];
-//hola
+//funcion para instalacion del cache
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
@@ -20,7 +20,7 @@ self.addEventListener('install', event => {
             })
     );
 });
-
+//para obtenerlo
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
@@ -32,7 +32,7 @@ self.addEventListener('fetch', event => {
             })
     );
 });
-
+//para activarlo
 self.addEventListener('activate', event => {
     event.waitUntil(
         caches.keys().then(cacheNames => {
