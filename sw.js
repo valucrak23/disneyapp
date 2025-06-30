@@ -61,12 +61,12 @@ self.addEventListener('push', (event)=>{
         actions:[
             {
                 'action': 'SI',
-                'title': 'Sexo la app',
+                'title': '¿Te gusta la app?',
                 'icon': 'icons/android-icon-192x192.png'
             },
             {
                 'action': 'NO',
-                'title': 'Sexo la app',
+                'title': '¿Te gusta la app?',
                 'icon': 'icons/android-icon-192x192.png'
             }
         ] 
