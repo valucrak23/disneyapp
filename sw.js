@@ -78,13 +78,13 @@ self.addEventListener('push', (event)=>{
 
 self.addEventListener('notificationclick', (event) => {
     console.log(event);
-    if (event.action === "SI") {
+    if (event.action === "Ir a Disney Plus") {
         console.log("Le gustó la app");
-        clients.openWindow('/index.html');
+        clients.openWindow('https://www.disneyplus.com/es-ar');
         console.log(clients);
-    } else if (event.action === "NO") {
+    } else if (event.action === "No Gracias") {
         console.log("No le gustó la app");
-        clients.openWindow('https://forms.gle/example-feedback-form');
+        clients.openWindow('/memory-game.html');
         console.log(clients);
     }
 });
