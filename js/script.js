@@ -54,6 +54,43 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('No se encontró el botón #share o el modal #shareModal, o falta Bootstrap JS');
     }
 
+    // --- COMPARTIR EN REDES SOCIALES ---
+    const shareLinks = document.querySelectorAll('#shareModal .modal-body a');
+    shareLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const url = window.location.href;
+            navigator.clipboard.writeText(url);
+            let shareUrl = '';
+            if (this.title === 'Facebook') {
+                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+            } else if (this.title === 'Twitter') {
+                shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=¡Mirá esta app de Disney!`;
+            } else if (this.title === 'WhatsApp') {
+                shareUrl = `https://wa.me/?text=${encodeURIComponent('¡Mirá esta app de Disney! ' + url)}`;
+            } else if (this.title === 'Instagram') {
+                // Instagram no permite compartir enlaces directamente, así que solo copia el link
+                alert('Enlace copiado. Pega el link en tu historia o mensaje de Instagram.');
+                return;
+            }
+            window.open(shareUrl, '_blank');
+        });
+    });
+
+    // Botón copiar enlace
+    const copyLinkBtn = document.getElementById('copy-link-btn');
+    if (copyLinkBtn) {
+        copyLinkBtn.addEventListener('click', function() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                copyLinkBtn.textContent = '¡Enlace copiado!';
+                setTimeout(() => {
+                    copyLinkBtn.textContent = 'Copiar enlace';
+                }, 1500);
+            });
+        });
+    }
+
     // Manejo del botón de prueba de notificaciones
     const testNotificationBtn = document.querySelector('#test-notification');
     if (testNotificationBtn) {
