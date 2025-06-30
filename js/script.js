@@ -111,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let showAlert = document.querySelector('#install-app')
 
     window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('Evento beforeinstallprompt disparado');
         e.preventDefault();
         aviso = e;
         console.log(aviso);
@@ -167,12 +168,13 @@ function showCustomNotification() {
     });
 }
 
-// Instalación PWA robusta
+// Restaurar el botón de instalar PWA para que funcione correctamente
 let deferredPrompt;
 const installBtn = document.getElementById('install-app');
 if (installBtn) {
     installBtn.style.display = 'none';
     window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('Evento beforeinstallprompt disparado');
         e.preventDefault();
         deferredPrompt = e;
         installBtn.style.display = 'flex';
@@ -192,37 +194,3 @@ if (installBtn) {
         }
     });
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Crear botón de prueba de notificación si no existe
-    if (!document.getElementById('test-notification-btn')) {
-        const btn = document.createElement('button');
-        btn.id = 'test-notification-btn';
-        btn.className = 'btn btn-warning';
-        btn.textContent = 'Probar notificación';
-        btn.style.position = 'fixed';
-        btn.style.bottom = '30px';
-        btn.style.right = '30px';
-        btn.style.zIndex = '2000';
-        document.body.appendChild(btn);
-        btn.addEventListener('click', () => {
-            if ('Notification' in window) {
-                if (Notification.permission === 'granted') {
-                    showCustomNotification();
-                } else if (Notification.permission !== 'denied') {
-                    Notification.requestPermission().then(permission => {
-                        if (permission === 'granted') {
-                            showCustomNotification();
-                        } else {
-                            alert('Debes permitir las notificaciones para probar.');
-                        }
-                    });
-                } else {
-                    alert('Debes permitir las notificaciones para probar.');
-                }
-            } else {
-                alert('Las notificaciones no son compatibles con este navegador.');
-            }
-        });
-    }
-});
