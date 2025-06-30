@@ -53,6 +53,53 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.warn('No se encontró el botón #share o el modal #shareModal, o falta Bootstrap JS');
     }
+
+    // Manejo del botón de prueba de notificaciones
+    const testNotificationBtn = document.querySelector('#test-notification');
+    if (testNotificationBtn) {
+        testNotificationBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            
+            if ('serviceWorker' in navigator && 'PushManager' in window) {
+                try {
+                    const registration = await navigator.serviceWorker.ready;
+                    
+                    // Solicitar permisos de notificación
+                    const permission = await Notification.requestPermission();
+                    
+                    if (permission === 'granted') {
+                        // Simular un evento push para mostrar la notificación
+                        registration.showNotification('Demo Push', {
+                            body: 'Click para regresar a la aplicación',
+                            icon: 'icons/android-icon-192x192.png',
+                            vibrate: [200, 100, 200, 200, 300, 400, 100, 400, 300],
+                            data: {id: 1},
+                            actions: [
+                                {
+                                    'action': 'SI',
+                                    'title': '¿Te gusta la app?',
+                                    'icon': 'icons/android-icon-192x192.png'
+                                },
+                                {
+                                    'action': 'NO',
+                                    'title': '¿Te gusta la app?',
+                                    'icon': 'icons/android-icon-192x192.png'
+                                }
+                            ]
+                        });
+                        console.log('Notificación enviada correctamente');
+                    } else {
+                        alert('Debes permitir las notificaciones para probar esta función.');
+                    }
+                } catch (error) {
+                    console.error('Error al mostrar la notificación:', error);
+                    alert('Error al mostrar la notificación. Verifica la consola para más detalles.');
+                }
+            } else {
+                alert('Las notificaciones push no son compatibles con este navegador.');
+            }
+        });
+    }
 });
 
 /* status de lines */
