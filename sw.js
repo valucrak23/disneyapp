@@ -54,19 +54,19 @@ self.addEventListener('push', (event)=>{
     let title = "Demo Push";
 
     let options = {
-        body: "Click para regresar a la aplicación",
+        body: "Elegir una acción",
         icon: "icons/android-icon-192x192.png",
         vibrate: [200, 100, 200, 200, 300, 400, 100, 400, 300],
         dat: {id: 1},
         actions:[
             {
                 'action': 'SI',
-                'title': '¿Te gusta la app?',
+                'title': 'Ir a disney Plus',
                 'icon': 'icons/android-icon-192x192.png'
             },
             {
                 'action': 'NO',
-                'title': '¿Te gusta la app?',
+                'title': 'Ver memory game',
                 'icon': 'icons/android-icon-192x192.png'
             }
         ] 
