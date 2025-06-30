@@ -79,8 +79,12 @@ self.addEventListener('push', (event)=>{
 self.addEventListener('notificationclick', (event) => {
     console.log(event);
     if (event.action === "SI") {
-        clients.openWindow('https://www.disneyplus.com/es-ar');
+        event.waitUntil(
+            clients.openWindow('https://www.disneyplus.com/es-ar')
+        );
     } else if (event.action === "NO") {
-        clients.openWindow('/memory-game.html');
+        event.waitUntil(
+            clients.openWindow('/memory-game.html')
+        );
     }
 });
